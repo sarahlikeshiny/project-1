@@ -17,7 +17,9 @@ $(() => {
 //global constants
   const words = ['cat', 'dog', 'horse', 'penguin'];
   const $displayWord =$('.word');
-  const $guessButton = $('.guess')
+  const $guessButton = $('#guess');
+  const $inputText =$('textarea');
+  let $userLetter = '';
 
 
 
@@ -30,13 +32,26 @@ $(() => {
   $displayWord.text(underScores);
   console.log(underScores);
 
-//guess button, on click, capture user input. - this needs redoing.
-  // $buttons.on('click', () => {
-  //   $displayWord.text();
-  // }
-  // do something here...
 
-//compare input to word
+
+//guess button, on click, capture user input. - WORKS
+
+  $guessButton.on('click', function() {
+    console.log('Clicked');
+    $userLetter = $inputText.val();
+    console.log($userLetter);
+    return $userLetter;
+  });
+
+//compare input to word - starts on window load? always returns a match, also needs to loop round the whole string
+
+  for (let i = 0; i < currentWord.length; i ++) {
+    if (currentWord.includes(($userLetter.toLowerCase())===true) {
+      console.log('a match');
+    } else {
+      console.log('no match');
+    }
+  }
 
 //if letter is in word, replace underscore with letter
 
