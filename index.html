@@ -2,14 +2,36 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Project 1</title>
+    <title>Hangman Game</title>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
-
-
   </head>
-  <body>
-    <h1>Project 1</h1>
+<body>
+  <main>
+    <header>
+      <h1>Hangman</h1>
+    </header>
 
-  </body>
+    <button type="button" name="reset">New Game</button>
+  <form class="gameboard" action="index.html" method="post">
+    <textarea name="userInput" rows="1" cols="1"></textarea>
+    <button type="button" name="guess">Guess</button>
+  </form>
+    <p class="incorrect">the incorrect guesses go here</p>
+    <p class="word"> the word goes here</p>
+    <div class="hangman">
+      the picture goes here
+      <img src="http://fillmurray.com/400/350">
+      <h2>win or lose text</h2>
+    </div>
+  </main>
+  <footer>
+  <h3>Made with &hearts; at GA London </h3>
+  </footer>
+</body>
+
 </html>
