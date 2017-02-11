@@ -19,8 +19,12 @@ $(() => {
   const $displayWord =$('.word');
   const $guessButton = $('#guess');
   const $inputText =$('textarea');
-  const $incorrectChars=$('.incorrect');
+  const $incorrectGuess=$('.incorrect');
+  const $reset=$('#reset');
+  let userLetter= '';
   let turns = 0;
+  let $displayCorrect = '';
+  let correctChars = '';
 
 
 
@@ -31,12 +35,13 @@ $(() => {
 //symbolise letters from the word selected and display on the screen -WORKS
   const underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
-  console.log(underScores);
+  console.log(underScores.length);
+  // const underScoresNoWhite = underScores.replace(/\s/g, '');
+  // console.log(underScoresNoWhite.length);
 
 
 
 //guess button, on click, capture user input. - WORKS
-  let userLetter = '';
 
   $guessButton.on('click', function() {
     console.log('Clicked');
@@ -45,34 +50,48 @@ $(() => {
     return userLetter;
   });
 
-//compare input to word - starts on window load? always returns a match, also needs to loop round the whole string
-//split string (string.split), then check for matches with the input character (index.of), then if a match, display character and of not display character in the incorrect answer area. -WORKS
 
-  const currentWordChars = currentWord.split('');
-  console.log(currentWordChars);
 
-  if (turns <=7) {
   $guessButton.on('click', function () {
-    for (let i = 0; i < currentWordChars.length; i ++)
-      if (currentWordChars.indexOf(userLetter) >-1 ){
+    if (turns <= 7){
+      for (let i = 0; i < currentWord.length; i ++) {
+        if (currentWord[i] === userLetter){
+        // make userLetter a substring and replace in underscores at the index?
+        console.log([i]);
+        //displays the letter, but doubles the underscores?
+        correctChars = underScores.slice((i+1)) + userLetter + underScores.substring(i+1);
+        console.log(correctChars);
         console.log('a match');
-        $displayWord.text(userLetter.toUpperCase());
-//replace dashes with the letter that has been matched, in the correct position in the word.
-
+        $displayWord.text(correctChars);
+        //need to clear the box after text has been picked up
       } else {
         console.log('no match');
-        $incorrectChars.text(userLetter.toUpperCase());
+        correctGuess = false;
+        //need to add each letter rather than overwriting, currently displays all of the user guesses.
+        let wrongGuesses= '' + userLetter + '';
+        $incorrectGuess.text(wrongGuesses.toUpperCase());
         turns ++;
+        }
       }
+    } else{
+    console.log('out of turns');
+    }
   });
-  }
-
-
-
 
 //if letter is in word, replace underscore with letter
 
 //else add letter to p.incorrect, and add 1 to turns, and update gallows picture
 
 //when turns = 7, or word is complete finish game, add text 'you win' or 'you lose' to
+
+//reset for new game. DOESN'T WORK
+  function resetBoard() {
+  //clear the guesses
+    clearInterval($inputText);
+    clearInterval($incorrectGuess)
+  }
+
+  $reset.on('click',resetBoard);
+
+
 });
