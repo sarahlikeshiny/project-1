@@ -15,11 +15,12 @@ $(() => {
 // continue until all turns are used or word is guessed.
 
 //global constants
-  const words = ['cat', 'dog', 'horse', 'penguin'];
+  const words = ['cat', 'dog', 'horse', 'penguin', 'monkey'];
   const $displayWord =$('.word');
   const $guessButton = $('#guess');
   const $inputText =$('textarea');
-  let $userLetter = '';
+  const $incorrectChars=$('.incorrect');
+  let turns = 0;
 
 
 
@@ -35,23 +36,39 @@ $(() => {
 
 
 //guess button, on click, capture user input. - WORKS
+  let userLetter = '';
 
   $guessButton.on('click', function() {
     console.log('Clicked');
-    $userLetter = $inputText.val();
-    console.log($userLetter);
-    return $userLetter;
+    userLetter = $inputText.val();
+    console.log(userLetter);
+    return userLetter;
   });
 
 //compare input to word - starts on window load? always returns a match, also needs to loop round the whole string
+//split string (string.split), then check for matches with the input character (index.of), then if a match, display character and of not display character in the incorrect answer area. -WORKS
 
-  for (let i = 0; i < currentWord.length; i ++) {
-    if (currentWord.includes(($userLetter.toLowerCase())===true) {
-      console.log('a match');
-    } else {
-      console.log('no match');
-    }
+  const currentWordChars = currentWord.split('');
+  console.log(currentWordChars);
+
+  if (turns <=7) {
+  $guessButton.on('click', function () {
+    for (let i = 0; i < currentWordChars.length; i ++)
+      if (currentWordChars.indexOf(userLetter) >-1 ){
+        console.log('a match');
+        $displayWord.text(userLetter.toUpperCase());
+//replace dashes with the letter that has been matched, in the correct position in the word.
+
+      } else {
+        console.log('no match');
+        $incorrectChars.text(userLetter.toUpperCase());
+        turns ++;
+      }
+  });
   }
+
+
+
 
 //if letter is in word, replace underscore with letter
 
