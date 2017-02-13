@@ -26,6 +26,7 @@ $(() => {
   let $displayCorrect = '';
   let correctChars = '';
   let correctCharsSpace ='';
+  let check = false;
 
 
 
@@ -55,64 +56,49 @@ $(() => {
   $guessButton.on('click', function () {
 
   //log index number of userLetter in currentWord with each turn,
+  //make correctChars - underscores saved in an array
     const correctChars = underScoresNoWhite.split('');
+  //loop through correctChars
     for(var i=0; i<correctChars.length;i++) {
+    //if user letter matches any of the currentword letters, push to index array, then make correctChars equal the userLetter
       if (currentWord[i] === userLetter) {
         indices.push(i);
         correctChars[i] = userLetter;
+        check = true;
+
+      //remake string with spaces
+        correctCharsSpace = correctChars.join(' ');
+        $displayWord.text(correctCharsSpace);
+//if the first part of the loop didn't run returns the letter to the incorrectguess box.
+      } else if (check !==true) {
+        console.log('no match');
+        $incorrectGuess.text(userLetter);
+        turns ++;
       }
-      correctCharsSpace = correctChars.join(' ');
+
+      //if the length of indices === length of current word then win,
+      }
     }
+
+
     console.log(indices);
     console.log(correctChars);
     console.log(correctChars.length);
     console.log(correctCharsSpace);
     console.log(correctCharsSpace.length);
+    console.log(check);
+    console.log(turns);
+
 
   });
 
-  // function replaceCorrect (indices, currentWord) {
-  //   return currentWord.substr(0,indices) + userLetter + currentWord.substr(indices+currentWord.length);
-  // }
-  // replaceCorrect();
 
-  // $guessButton.on('click', function () {
-  //   if (turns <= 7){
-  //     for (let i = 0; i < currentWord.length; i ++) {
-  //       if (currentWord[i] === userLetter){
-  //       // make userLetter a substring and replace in underscores at the index?
-  //       console.log([i]);
-  //       //displays the letter, but doubles the underscores?
-  //       correctChars = underScores.slice((i+1)) + userLetter + underScores.substring(i+1);
-  //       console.log(correctChars);
-  //       console.log('a match');
-  //       $displayWord.text(correctChars);
-  //       //need to clear the box after text has been picked up
-  //     } else {
-  //       console.log('no match');
-  //       correctGuess = false;
-  //       //need to add each letter rather than overwriting, currently displays all of the user guesses.
-  //       let wrongGuesses= '' + userLetter + '';
-  //       $incorrectGuess.text(wrongGuesses.toUpperCase());
-  //       turns ++;
-  //       }
-  //     }
-  //   } else{
-  //   console.log('out of turns');
-  //   }
-  // });
-
-//if letter is in word, replace underscore with letter
-
-//else add letter to p.incorrect, and add 1 to turns, and update gallows picture
-
-//when turns = 7, or word is complete finish game, add text 'you win' or 'you lose' to
 
 //reset for new game. DOESN'T WORK
   function resetBoard() {
   //clear the guesses
     clearInterval($inputText);
-    clearInterval($incorrectGuess)
+    clearInterval($incorrectGuess);
   }
 
   $reset.on('click',resetBoard);

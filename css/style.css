@@ -2,9 +2,12 @@
   box-sizing: border-box;
 }
 body {
-  height: 960px;
+  height: auto;
   width:auto;
-    background-image: url(/Users/sarahmiller/development/project/images/blackboard.001.jpeg);
+  background-image: url(/Users/sarahmiller/development/project/images/blackboard.001.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+
 }
 
 main {
@@ -13,11 +16,27 @@ main {
   margin: 0 auto;
   /*border: 2px solid #333;*/
   padding: 10px;
-  background-image: url(/Users/sarahmiller/development/project/images/blackboard.001.jpeg);
+  /*background-image: url(/Users/sarahmiller/development/project/images/blackboard.001.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;*/
 }
+header {
+    clear:both;
+    margin-top: 0px;
+    background-color: rgba(0, 61, 102, 0.5);
+    /*make this a gradient*/
+    padding: 15px;
+    /*font-size: 12px;
+    color: #fff;
+    text-align :center;*/
+  }
 
-h1 {
-  text-align:center;
+header, h1 {
+  text-align:left;
+  font-family: 'Fredericka the Great', regular;
+  color: white;
+  font-size: 30px;
+
 }
 button {
   margin:30px;
@@ -25,15 +44,20 @@ button {
 div {
   position:absolute;
   margin-left: 400px;
-  height:500px;
+  /*height:500px;*/
   border: 2px solid grey;
+  /*margin-top: 100px;*/
 }
 p {
   position:absolute;
   margin-top: 200px;
-  margin-left: 100px;
+  margin-left: 30px;
   border: 2px solid grey;
   padding:20px;
+  background-color: white;
+  width:200px;
+  height: 75px;
+  text-align: center;
 }
 .incorrect {
   margin-top:600px;
@@ -45,7 +69,7 @@ form {
   position:absolute;
   background:pink;
   margin-top: 400px;
-  margin-left: 20px;
+  margin-left: 30px;
   width:300px;
   height:75px;
   border:2px solid grey;
@@ -55,7 +79,7 @@ form {
 footer {
   clear:both;
   margin-top: 820px;
-  background-color: #3c3c3c;
+  background-color: rgba(0, 61, 102, 0.5);
   padding: 20px;
   font-size: 12px;
   color: #fff;
