@@ -63,7 +63,6 @@ $(() => {
 
     // if user letter matches any of the currentword letters, push to index array, then make correctChars equal the userLetter
 
-
     for(var i=0; i<correctChars.length;i++) {
       if (currentWord[i] === userLetter) {
         indices.push(i);
@@ -81,7 +80,7 @@ $(() => {
           // incorrectCharsSpace = incorrectChars.join(' ');
       $incorrectGuess.text(incorrectChars);
     }
-
+//add loop over the array, as length changes, change image 
 
 
 
