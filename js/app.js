@@ -23,10 +23,9 @@ $(() => {
   const $reset=$('#reset');
   let userLetter= '';
   let turns = 0;
-  let $displayCorrect = '';
-  let correctChars = '';
-  let correctCharsSpace ='';
+  let correctCharsSpace =[];
   let check = false;
+  let incorrect = [];
 
 
 
@@ -53,39 +52,45 @@ $(() => {
   });
 
   const indices = [];
+  const correctChars = underScoresNoWhite.split('');
+  const incorrectChars = [];
+
   $guessButton.on('click', function () {
 
-  //log index number of userLetter in currentWord with each turn,
-  //make correctChars - underscores saved in an array
-    const correctChars = underScoresNoWhite.split('');
-  //loop through correctChars
+  // log index number of userLetter in currentWord with each turn,
+  // make correctChars array to store correctChars
+  // loop through correctChars
+
+    // if user letter matches any of the currentword letters, push to index array, then make correctChars equal the userLetter
+
+
     for(var i=0; i<correctChars.length;i++) {
-    //if user letter matches any of the currentword letters, push to index array, then make correctChars equal the userLetter
       if (currentWord[i] === userLetter) {
         indices.push(i);
         correctChars[i] = userLetter;
         check = true;
-
       //remake string with spaces
         correctCharsSpace = correctChars.join(' ');
         $displayWord.text(correctCharsSpace);
-//if the first part of the loop didn't run returns the letter to the incorrectguess box.
-      } else if (check !==true) {
-        console.log('no match');
-        $incorrectGuess.text(userLetter);
-        turns ++;
-      }
+// if the first part of the loop didn't run returns the letter to the incorrectguess box.
+    }
+  }
 
-      //if the length of indices === length of current word then win,
-      }
+    if (!currentWord.includes(userLetter)) {
+      incorrectChars.push(userLetter);
+          // incorrectCharsSpace = incorrectChars.join(' ');
+        $incorrectGuess.text(incorrectChars);
     }
 
 
+
+
+      //if the length of indices === length of current word then win,
+
     console.log(indices);
     console.log(correctChars);
-    console.log(correctChars.length);
-    console.log(correctCharsSpace);
-    console.log(correctCharsSpace.length);
+    console.log(userLetter);
+    console.log(incorrectChars);
     console.log(check);
     console.log(turns);
 
