@@ -25,6 +25,7 @@ $(() => {
   let turns = 0;
   let $displayCorrect = '';
   let correctChars = '';
+  let correctCharsSpace ='';
 
 
 
@@ -36,8 +37,8 @@ $(() => {
   const underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
   console.log(underScores.length);
-  // const underScoresNoWhite = underScores.replace(/\s/g, '');
-  // console.log(underScoresNoWhite.length);
+  const underScoresNoWhite = underScores.replace(/\s/g, '');
+  console.log(underScoresNoWhite.length);
 
 
 
@@ -50,33 +51,56 @@ $(() => {
     return userLetter;
   });
 
-
-
+  const indices = [];
   $guessButton.on('click', function () {
-    if (turns <= 7){
-      for (let i = 0; i < currentWord.length; i ++) {
-        if (currentWord[i] === userLetter){
-        // make userLetter a substring and replace in underscores at the index?
-        console.log([i]);
-        //displays the letter, but doubles the underscores?
-        correctChars = underScores.slice((i+1)) + userLetter + underScores.substring(i+1);
-        console.log(correctChars);
-        console.log('a match');
-        $displayWord.text(correctChars);
-        //need to clear the box after text has been picked up
-      } else {
-        console.log('no match');
-        correctGuess = false;
-        //need to add each letter rather than overwriting, currently displays all of the user guesses.
-        let wrongGuesses= '' + userLetter + '';
-        $incorrectGuess.text(wrongGuesses.toUpperCase());
-        turns ++;
-        }
+
+  //log index number of userLetter in currentWord with each turn,
+    const correctChars = underScoresNoWhite.split('');
+    for(var i=0; i<correctChars.length;i++) {
+      if (currentWord[i] === userLetter) {
+        indices.push(i);
+        correctChars[i] = userLetter;
       }
-    } else{
-    console.log('out of turns');
+      correctCharsSpace = correctChars.join(' ');
     }
+    console.log(indices);
+    console.log(correctChars);
+    console.log(correctChars.length);
+    console.log(correctCharsSpace);
+    console.log(correctCharsSpace.length);
+
   });
+
+  // function replaceCorrect (indices, currentWord) {
+  //   return currentWord.substr(0,indices) + userLetter + currentWord.substr(indices+currentWord.length);
+  // }
+  // replaceCorrect();
+
+  // $guessButton.on('click', function () {
+  //   if (turns <= 7){
+  //     for (let i = 0; i < currentWord.length; i ++) {
+  //       if (currentWord[i] === userLetter){
+  //       // make userLetter a substring and replace in underscores at the index?
+  //       console.log([i]);
+  //       //displays the letter, but doubles the underscores?
+  //       correctChars = underScores.slice((i+1)) + userLetter + underScores.substring(i+1);
+  //       console.log(correctChars);
+  //       console.log('a match');
+  //       $displayWord.text(correctChars);
+  //       //need to clear the box after text has been picked up
+  //     } else {
+  //       console.log('no match');
+  //       correctGuess = false;
+  //       //need to add each letter rather than overwriting, currently displays all of the user guesses.
+  //       let wrongGuesses= '' + userLetter + '';
+  //       $incorrectGuess.text(wrongGuesses.toUpperCase());
+  //       turns ++;
+  //       }
+  //     }
+  //   } else{
+  //   console.log('out of turns');
+  //   }
+  // });
 
 //if letter is in word, replace underscore with letter
 
