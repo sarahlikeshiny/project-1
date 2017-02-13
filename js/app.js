@@ -73,13 +73,13 @@ $(() => {
         correctCharsSpace = correctChars.join(' ');
         $displayWord.text(correctCharsSpace);
 // if the first part of the loop didn't run returns the letter to the incorrectguess box.
+      }
     }
-  }
 
     if (!currentWord.includes(userLetter)) {
       incorrectChars.push(userLetter);
           // incorrectCharsSpace = incorrectChars.join(' ');
-        $incorrectGuess.text(incorrectChars);
+      $incorrectGuess.text(incorrectChars);
     }
 
 
