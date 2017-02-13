@@ -35,23 +35,34 @@ header, h1 {
   text-align:left;
   font-family: 'Bungee Shade', cursive;
   color: white;
-  font-size: 30px;
+  font-size: 40px;
 
 }
-button {
+section {
+  position:absolute;
+  margin-right: 50%;
+}
+section button {
   margin:30px;
 }
 div {
   position:absolute;
-  margin-left: 50%;
+  margin-left: 45%;
+  margin-right: 10px;
   /*height:500px;*/
-  border: 2px solid grey;
+  /*border: 2px solid grey;*/
   /*margin-top: 100px;*/
 }
-div, img {
-  width:500px;
-  height:500px;
+img {
+  position:absolute;
+  width:650px;
+  height:700px;
+
 }
+
+
+
+
 p {
   position:absolute;
   margin-top: 10%;
@@ -78,6 +89,9 @@ form {
   height:75px;
   border:2px solid grey;
   padding:20px
+}
+textarea {
+  width: 200px;
 }
 
 footer {
