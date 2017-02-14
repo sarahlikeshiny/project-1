@@ -21,12 +21,11 @@ $(() => {
   const $inputText =$('textarea');
   const $incorrectGuess=$('.incorrect');
   const $reset=$('#reset');
-  const $winLoseMsg = $('h2')
+  const $winLoseMsg = $('h2');
+  const $picture = $('img');
   let userLetter= '';
-  let turns = 0;
   let correctCharsSpace =[];
-  let check = false;
-  let incorrect = [];
+
 
 
 
@@ -82,9 +81,8 @@ $(() => {
       $incorrectGuess.text(incorrectChars);
       $inputText.val('');
     }
-    console.log(incorrectChars);
-    console.log(incorrectChars.length);
 
+//win/lose condition.
     if (incorrectChars.length === 7) {
       console.log('lose');
       $winLoseMsg.text('Sorry You Lose');
@@ -96,9 +94,29 @@ $(() => {
     }
 
     //display pictures.
+    if (incorrectChars.length === 1){
+      $picture.attr('src','images/step one.png');
+    } else if (incorrectChars.length === 2){
+      //picture 2
+      $picture.attr('src','images/step two.png');
+    } else if (incorrectChars.length === 3){
+      //picture 3
+      $picture.attr('src','images/step three.png');
+    } else if (incorrectChars.length === 4){
+      //picture 4
+      $picture.attr('src','images/step four.png');
+    } else if (incorrectChars.length === 5){
+      //picture 5
+      $picture.attr('src','images/step five.png');
+    } else if (incorrectChars.length === 6){
+      //picture 6
+      $picture.attr('src','images/step six.png');
+    } else if (incorrectChars.length === 7){
+      //picture 7
+      $picture.attr('src','images/step seven.png');
+    }
 
 
-      //if the length of indices === length of current word then win,
 
 
 
