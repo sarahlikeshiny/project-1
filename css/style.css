@@ -1,35 +1,42 @@
 * {
   box-sizing: border-box;
 }
-body {
-  height: auto;
-  width:auto;
-  background-image: url(/Users/sarahmiller/development/project/images/blackboard.001.jpeg);
-  background-size: cover;
-  background-repeat: no-repeat;
-
+html, body {
+  height:100%;
+}
+#wrap {
+  min-height: 100%;
+   position: relative;
+    width:auto;
+    margin:0;
+    padding:0;
+    background-image: url(/Users/sarahmiller/development/project/images/blackboard.001.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
+
 main {
-  position:relative;
-  /*width: 800px;*/
-  margin: 0 auto;
+  overflow:auto;
+  /*margin: 0 auto;*/
   /*border: 2px solid #333;*/
   padding: 10px;
+  padding-bottom:150px;
   /*background-image: url(/Users/sarahmiller/development/project/images/blackboard.001.jpeg);
   background-size: cover;
   background-repeat: no-repeat;*/
 }
-header {
-    clear:both;
-    margin-top: 0px;
-    background-color: rgba(0, 61, 102, 0.5);
-    /*make this a gradient*/
-    padding: 20px;
-    /*font-size: 12px;
-    color: #fff;
-    text-align :center;*/
-  }
+
+header{
+  padding:10px;
+  margin-top: 0px;
+  background-color: rgba(0, 61, 102, 0.5);
+  /*make this a gradient*/
+  padding: 20px;
+  font-size: 12px;
+  color: #fff;
+  text-align :center;
+}
 
 header, h1 {
   text-align:left;
@@ -38,10 +45,7 @@ header, h1 {
   font-size: 40px;
 
 }
-section {
-  position:absolute;
-  margin-right: 50%;
-}
+
 section button {
   margin:30px;
 }
@@ -55,36 +59,35 @@ div {
 }
 img {
   position:absolute;
-  width:650px;
-  height:700px;
+  width:500px;
+  height:500px;
   border: 2px solid white;
 }
 
-
 p {
   position:absolute;
-  margin-top: 10%;
-  margin-left: 20px;
+  /*margin-top: 10%;
+  margin-left: 20px;*/
   /*border: 2px solid grey;*/
   padding:20px;
   width:500px;
-  height: 100px;
+  height: 75px;
   font-family: 'Bungee', cursive;
   text-align: center;
   font-size:40px;
   color:white;
 }
 .incorrect {
-  margin-top:40%;
-  margin-left:20px;
-  width:500px;
+  margin-top:30%;
+  /*margin-left:20px;*/
+  width:450px;
 }
 
 form {
   position:absolute;
-  margin-top: 20%;
-  margin-left: 20px;
-  width:500px;
+  margin-top: 15%;
+  /*margin-left: 20px;*/
+  width:450px;
   height:75px;
   /*border:2px solid grey;*/
   padding:20px
@@ -113,17 +116,21 @@ button {
 button:hover {
   background-color: rgb(128, 0, 42);
 }
-
 footer {
+  position:relative;
   clear:both;
-  margin-top: 820px;
+  margin-top: -60px;
+  width:100%;
+  height:60px;
   background-color: rgba(0, 61, 102, 0.5);
-  padding: 20px;
+  padding: 5px;
   font-size: 18px;
   font-family: 'Bungee Shade', cursive;
   color: #fff;
   text-align :center;
+
 }
+
 a {
   color: #fff;
   text-decoration: none;

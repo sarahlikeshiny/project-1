@@ -12,31 +12,35 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
   </head>
+
 <body>
+  <div id="wrap">
   <header>
     <h1>Hangman</h1>
   </header>
-  <main>
-    <!-- <img src="images/blackboard.001.jpeg" alt="blackboard background"> -->
 
-          <button type="button" name="reset" id ="reset">New Game</button>
+
+  <main>
+    <button type="button" name="reset" id ="reset">New Game</button>
         <form class="gameboard" action="index.html" method="post">
           <textarea name="userInput" rows="1" cols="5"></textarea>
           <button type="button" name="guess" id = "guess">Guess</button>
         </form>
-          <p class="incorrect">Incorrect Guesses</p>
+          <p class="incorrect"></p>
           <p class="word"> the word goes here</p>
       </form>
 
     <div class="hangman">
       <img src="images/step one.png" alt="step one">
-
       <h2></h2>
     </div>
   </main>
+</div>
+
   <footer>
-  <h3>Made with &hearts; by <a href="#">Sarah</a> at GA London </h3>
+    <h3>Made with &hearts; by <a  href="#">Sarah</a> at GA London </h3>
   </footer>
+
 </body>
 
 </html>
