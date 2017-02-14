@@ -6,7 +6,7 @@ html, body {
 }
 #wrap {
   min-height: 100%;
-   position: relative;
+  position: relative;
   width:auto;
   margin:0;
   padding:0;
@@ -50,17 +50,23 @@ h1 {
 }
 /*picture -right hand side*/
 div {
-  position:absolute;
-  margin-left: 45%;
-  margin-right: 10px;
+  /*float:right;*/
+  /*margin-left: 45%;
+  margin-right: 10px;*/
 }
 img {
-  position:absolute;
-  width:500px;
+  /*position:absolute;*/
+  float:right;
+  width:50%;
   height:500px;
   border: 2px solid white;
+  margin:20px;
 }
 /*form-left hand side*/
+.left{
+  float:left;
+  width:50%;
+}
 h2 {
   position:absolute;
   margin-left: 20px;
@@ -73,8 +79,9 @@ h2 {
   color:white;
 }
 .incorrect {
-  margin-top:40%;
+  margin-top:45%;
   width:400px;
+  /*border: 2px solid grey;*/
 }
 
 form {
@@ -139,3 +146,17 @@ a {
   color: #fff;
   text-decoration: none;
 }
+footer .logo {
+  float:left;
+  height: 20px;
+  width:20px;
+}
+@media only screen and (max-width: 640px) {
+   img, .left{
+     display:block;
+     float:none;
+     width:100%;
+
+   }
+
+  }

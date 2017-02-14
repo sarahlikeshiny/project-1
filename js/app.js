@@ -51,6 +51,11 @@ $(() => {
     console.log('Clicked');
     userLetter = $inputText.val();
     console.log(userLetter);
+    // sort this out tomorrow
+    // if (userLetter.length > 1){
+    //   // userLetter=null;
+    //   // alert('please enter a single letter only');
+    
     return userLetter;
 
   });
@@ -82,6 +87,11 @@ $(() => {
       incorrectChars.push(userLetter);
       $incorrectGuess.text(incorrectChars);
       $inputText.val('');
+    }
+
+    // check for repeated letters
+    if (userLetter === correctCharsSpace[i] || incorrectChars[i]){
+      //set a message of some kind//
     }
 
 //win/lose condition.
