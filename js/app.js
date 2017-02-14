@@ -27,7 +27,10 @@ $(() => {
   let correctCharsSpace =[];
 
 
-
+//need a function that clears the board and refreshes the word (exactly what refreshing the page does now)
+  $reset.on('click', function () {
+    location.reload(true);
+  });
 
 //randomly select a word from the array - currentWord - WORKS
   const currentWord = words[Math.floor(Math.random() * words.length)];
@@ -68,7 +71,6 @@ $(() => {
       if (currentWord[i] === userLetter) {
         indices.push(i);
         correctChars[i] = userLetter;
-        check = true;
         $inputText.val('');
       //remake string with spaces
         correctCharsSpace = correctChars.join(' ');
@@ -82,17 +84,11 @@ $(() => {
       $inputText.val('');
     }
 
-//win/lose condition.
-    if (incorrectChars.length === 7) {
-      console.log('lose');
-      $winLoseMsg.text('Sorry You Lose');
-    }
-
+//win/lose condition.  
     if (indices.length === currentWord.length) {
       console.log('win');
       $winLoseMsg.text('You Win!');
     }
-
     //display pictures.
     if (incorrectChars.length === 1){
       $picture.attr('src','images/step one.png');
@@ -114,24 +110,10 @@ $(() => {
     } else if (incorrectChars.length === 7){
       //picture 7
       $picture.attr('src','images/step seven.png');
+      $winLoseMsg.text('Sorry You Lose');
     }
 
-
-
-
-
   });
-
-
-
-//reset for new game. DOESN'T WORK
-  function resetBoard() {
-  //clear the guesses
-    clearInterval($inputText);
-    clearInterval($incorrectGuess);
-  }
-
-  $reset.on('click',resetBoard);
 
 
 });
