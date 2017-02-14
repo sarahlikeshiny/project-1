@@ -17,25 +17,24 @@
   <div id="wrap">
   <header>
     <h1>Hangman</h1>
+    <button type="button" name="reset" id ="reset">New Game</button>
   </header>
 
 
   <main>
-    <button type="button" name="reset" id ="reset">New Game</button>
-        <form class="gameboard" action="index.html" method="post">
-          <textarea name="userInput" rows="1" cols="5"></textarea>
-          <button type="button" name="guess" id = "guess">Guess</button>
-        </form>
-          <p class="incorrect"></p>
-          <p class="word"> the word goes here</p>
+      <form class="gameboard" action="index.html" method="post">
+        <textarea name="userInput" rows="1" cols="5"></textarea>
+        <button type="button" name="guess" id = "guess">Guess</button>
       </form>
+        <h2 class="incorrect"></h2>
+        <h2 class="word"> the word goes here</h2>
+          <p class ="winlose"></p>
 
-    <div class="hangman">
-      <img src="images/step one.png" alt="step one">
-      <h2></h2>
-    </div>
+      <div class="hangman">
+        <img src="images/step one.png" alt="step one">
+      </div>
   </main>
-</div>
+  </div>
 
   <footer>
     <h3>Made with &hearts; by <a  href="#">Sarah</a> at GA London </h3>
