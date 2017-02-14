@@ -84,7 +84,7 @@ $(() => {
       $inputText.val('');
     }
 
-//win/lose condition.  
+//win/lose condition.
     if (indices.length === currentWord.length) {
       console.log('win');
       $winLoseMsg.text('You Win!');
