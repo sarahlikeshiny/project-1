@@ -160,6 +160,9 @@ a {
   color: #fff;
   text-decoration: none;
 }
+a:hover {
+  text-decoration: underline;
+}
 footer .logo {
   float:left;
   height: 20px;
