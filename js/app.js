@@ -15,7 +15,6 @@ $(() => {
   const $showtimer = $('.timer');
   let userLetter= '';
   let correctCharsSpace =[];
-  let timerOn = false;
   const images = [
     'step-zero.png',
     'step-one.png',
@@ -36,17 +35,15 @@ $(() => {
   });
 //listen for click to activate timed mode.
   $timedMode.on('click', startStopTimer);
+  $timedMode.on('click', countDown);
 
 //select word at random
   const currentWord = words[Math.floor(Math.random() * words.length)];
   console.log(currentWord);
 
 //create underscores for display
-
-
   const underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
-  // console.log(underScores.length);
   const underScoresNoWhite = underScores.replace(/\s/g, '');
   // console.log(underScoresNoWhite.length);
   // (function typeWriter() {
@@ -70,13 +67,7 @@ $(() => {
     console.log('Clicked');
     userLetter = $inputText.val();
     console.log(userLetter);
-    // sort this out tomorrow
-    // if (userLetter.length > 1){
-    //   // userLetter=null;
-    //   // alert('please enter a single letter only');
-
     return userLetter;
-
   });
 //check for correct answer, display string with correct letters.
   const indices = [];
@@ -84,7 +75,6 @@ $(() => {
   const incorrectChars = [];
 
   $guessButton.on('click', function () {
-
     for(var i=0; i<correctChars.length;i++) {
       if (currentWord[i] === userLetter) {
         indices.push(i);
@@ -95,61 +85,51 @@ $(() => {
         $displayWord.text(correctCharsSpace);
       }
     }
-//if letter is not present, add to incorrect guesses box
     if (!currentWord.includes(userLetter)) {
       incorrectChars.push(userLetter);
       $incorrectGuess.text(incorrectChars);
       $inputText.val('');
     }
 
-    // check for repeated letters
-    if (userLetter === correctCharsSpace[i] || incorrectChars[i]){
-      //set a message of some kind//
-    }
-
-//win/lose condition.
     if (indices.length === currentWord.length) {
       console.log('win');
       $winLoseMsg.text('You Win!');
-    } //the timer version need to go here, need to do this bit unless the timer is pressed then do the other bit.
-    if (timerOn === false) {
-      const image = `images/${images[incorrectChars.length]}`;
-      $picture.attr('src', image);
-      if(incorrectChars.length === 7) {
-        $winLoseMsg.text('Sorry You Lose');
-      }
+    }
+
+    const image = `images/${images[incorrectChars.length]}`;
+    $picture.attr('src', image);
+    if(incorrectChars.length === 7) {
+      $winLoseMsg.text('Sorry You Lose');
+      console.log(image);
     }
   });
 
 // ------------------TIMER----------------------------
 
-  let timeRemaining = 30;
+  let timeRemaining = 35;
   let timerIsRunning = false;
   let timerId = null;
 
+  function countDown() {
+  // stop the timer if it is running
+    if(timerIsRunning) {
+      clearInterval(timerId);
+      timerIsRunning = false;
+    } else {
+    // start the timer if it is NOT running
+      timerId = setInterval(() => {
+        timeRemaining--;
+        $showtimer.text(timeRemaining);
 
-//   function startStopTimer() {
-//   // stop the timer if it is running
-//     if(timerIsRunning) {
-//       clearInterval(timerId);
-//       timerIsRunning = false;
-//     } else {
-//     // start the timer if it is NOT running
-//       timerId = setInterval(() => {
-//         timeRemaining--;
-//         $showtimer.text(timeRemaining);
-// //stop timer at 0 and change image to final and add lose message
-//         if(timeRemaining === 0) {
-//           clearInterval(timerId);
-//           $picture.attr('src','../images/step-seven.png');
-//           $winLoseMsg.text('Sorry You Lose');
-//         }
-//       }, 1000);
-//       timerIsRunning = true;
-//     }
-//   }
+        if(timeRemaining === 0) {
+          clearInterval(timerId);
+        }
+      }, 1000);
+      timerIsRunning = true;
+    }
+  }
 
-  // // ------------SPEED MODE FUNCTION------------
+  // // // ------------SPEED MODE FUNCTION------------
   function startStopTimer (){
     console.log('startStopTimer');
     let i = 1;
@@ -158,21 +138,11 @@ $(() => {
 
       if(i === 7) {
         clearInterval(timerId);
-        console.log('Game over!');
+        $winLoseMsg.text('Game over!');
       }
-
       i++;
-    }, 500);
-
+    }, 5000);
   }
-
-  // if (timerOn === true) {
-  //   changeImage();
-  //   startStopTimer();
-  // }
-
-  // $timedMode.on('click', startStopTimer);
-// $timedMode.on('click', changeImage);
 
 });
 
