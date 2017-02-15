@@ -21,22 +21,41 @@ $(() => {
   const $inputText =$('textarea');
   const $incorrectGuess=$('.incorrect');
   const $reset=$('#reset');
-  const $winLoseMsg = $('h2');
+  const $winLoseMsg = $('.word');
   const $picture = $('img');
   let userLetter= '';
   let correctCharsSpace =[];
+  const $images = new Array();
+  // $images[0]= new Image();
+  // $images[0].src='./images/step-zero.png';
+  $images[1]= new Image();
+  $images[1].src='./images/step-one.png';
+  $images[2]= new Image();
+  $images[2].src='./images/step-two.png';
+  $images[3]= new Image();
+  $images[3].src='./images/step-three.png';
+  $images[4]= new Image();
+  $images[4].src='./images/step-four.png';
+  $images[5]= new Image();
+  $images[5].src='./images/step-five.png';
+  $images[6]= new Image();
+  $images[6].src='./images/step-six.png';
+  $images[7]= new Image();
+  $images[7].src='./images/step-seven.png';
 
 
-//need a function that clears the board and refreshes the word (exactly what refreshing the page does now)
+
+
+// ------------New Game----------------------------
   $reset.on('click', function () {
     location.reload(true);
   });
 
-//randomly select a word from the array - currentWord - WORKS
+//select word at random
   const currentWord = words[Math.floor(Math.random() * words.length)];
   console.log(currentWord);
 
-//symbolise letters from the word selected and display on the screen
+//create underscores for display
   const underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
   // console.log(underScores.length);
@@ -45,7 +64,7 @@ $(() => {
 
 
 
-//guess button, on click, capture user input. - WORKS
+//click guess button, capture user input, check for duplicates
 
   $guessButton.on('click', function() {
     console.log('Clicked');
@@ -59,7 +78,7 @@ $(() => {
     return userLetter;
 
   });
-
+//check for correct answer, display string with correct letters.
   const indices = [];
   const correctChars = underScoresNoWhite.split('');
   const incorrectChars = [];
@@ -76,7 +95,7 @@ $(() => {
         $displayWord.text(correctCharsSpace);
       }
     }
-
+//if letter is not present, add to incorrect guesses box
     if (!currentWord.includes(userLetter)) {
       incorrectChars.push(userLetter);
       $incorrectGuess.text(incorrectChars);
@@ -95,43 +114,44 @@ $(() => {
     }
     //display pictures.
     if (incorrectChars.length === 1){
-      $picture.attr('src','images/step one.png');
+      $picture.attr($images[1]);
     } else if (incorrectChars.length === 2){
       //picture 2
-      $picture.attr('src','images/step two.png');
+      $picture.attr($images[2]);
     } else if (incorrectChars.length === 3){
       //picture 3
-      $picture.attr('src','images/step three.png');
+      $picture.attr($images[3]);
     } else if (incorrectChars.length === 4){
       //picture 4
-      $picture.attr('src','images/step four.png');
+      $picture.attr($images[4]);
     } else if (incorrectChars.length === 5){
       //picture 5
-      $picture.attr('src','images/step five.png');
+      $picture.attr($images[5]);
     } else if (incorrectChars.length === 6){
       //picture 6
-      $picture.attr('src','images/step six.png');
+      $picture.attr($images[6]);
     } else if (incorrectChars.length === 7){
       //picture 7
-      $picture.attr('src','images/step seven.png');
+      $picture.attr($images[7]);
       $winLoseMsg.text('Sorry You Lose');
     }
 
   });
 
-  // timed mode
-  // on button press, activate timer,every 15 secs lose a life, for every correct answer pause clock for 15 secs.
 
-  // TIMER
+  // timed mode
+  // on button press, activate timer,every 5 secs lose a life, for every correct answer pause clock for 5 secs.
+
+  // ------------------TIMER----------------------------
   const $timedMode= $('#timed');
   const $timer = $('.timer');
-  // const $timerScreen = $timer.find('.screen');
-  // const $startStopBtn = $timer.find('#startStop');
-  // const $resetBtn = $timer.find('#reset');
-
-
-  // add event listeners to $startStopBtn & $resetBtn
-
+  // // const $timerScreen = $timer.find('.screen');
+  // // const $startStopBtn = $timer.find('#startStop');
+  // // const $resetBtn = $timer.find('#reset');
+  //
+  //
+  // // add event listeners to $startStopBtn & $resetBtn
+  //
   let timeRemaining = 30;
   let timerIsRunning = false;
   let timerId = null;
@@ -147,18 +167,39 @@ $(() => {
       timerId = setInterval(() => {
         timeRemaining--;
         $timer.text(timeRemaining);
-
+//stop timer at 0 and change image to final and add lose message
         if(timeRemaining === 0) {
           clearInterval(timerId);
-          $picture.attr('src','images/step seven.png');
+          $picture.attr('src','../images/step-seven.png');
+          $winLoseMsg.text('Sorry You Lose');
         }
       }, 1000);
       timerIsRunning = true;
     }
   }
-  $timedMode.on('click', startStopTimer);
-});
-var t1;
-t1 =setTimeout(,1000) //1000 = 1 sec
 
-clearTimeout(t1);
+  //------------SPEED MODE FUNCTION------------
+  // function changeImage (){
+  //   for (let i = 0; i<= $images.length; i++ ){
+  //     $picture.attr('src', $images[i]);
+  //     console.log($images[i]);
+  //   }
+  //   setInterval(changeImage,5000);
+  // }
+
+
+//fade next image in every 5 seconds
+  // let $img = $images, i = 0, speed = 100;
+  // window.setInterval(function() {
+  //     $img.attr('src', $images[(++i % $images.length)]);
+  //   });
+  // }, 5000);
+  $timedMode.on('click', startStopTimer);
+  // $timedMode.on('click', changeImage);
+
+});
+
+
+//once hangman is hanged dont allow any more letters to be input
+//once a letter is used dont allow this to be input against
+//

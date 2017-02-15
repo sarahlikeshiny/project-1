@@ -10,7 +10,7 @@ html, body {
   width:auto;
   margin:0;
   padding:0;
-  background-image: url(/Users/sarahmiller/development/project/images/blackboard.001.jpeg);
+  background-image: url(../images/blackboard.001.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -165,6 +165,7 @@ footer .logo {
   height: 20px;
   width:20px;
 }
+
 @media only screen and (max-width: 640px) {
    img, .left{
      display:block;
