@@ -78,25 +78,52 @@ img {
 h2 {
   position:absolute;
   margin-left: 20px;
-  margin-top:10%;
+  margin-top:13%;
   width:400px;
   height: 75px;
   font-family: 'Bungee', cursive;
   text-align: center;
   font-size:40px;
   color:white;
+  /*border: 2px solid grey;*/
 }
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  /*border-right: .15em solid orange; /* The typwriter cursor */*/
+  white-space: nowrap; /* Keeps the content on a single line */
+  /*margin: 0 auto; /* Gives that scrolling effect as the typing happens */*/
+  margin-top: 20%;
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+/* The typewriter cursor effect */
+/*@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}*/
 .incorrect {
-  margin-top:45%;
+  margin-top:35%;
   width:400px;
   /*border: 2px solid grey;*/
 }
-.timer {
-  margin-top:0%;
-  margin-left:10%;
+#timer {
+  margin-top:3%;
+  margin-left:100px;
   width:200px;
-  border: 2px solid grey;
+  /*border: 2px solid grey;*/
 }
+/*#timer.changecolor {
+  color:rgb(128, 0, 42);
+  /*animation: shake 0.5s infinite;*/
+
 
 form {
   position:absolute;

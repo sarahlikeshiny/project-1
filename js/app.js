@@ -4,7 +4,7 @@ $(() => {
 
 //global constants
   const words = ['cat', 'dog', 'horse', 'penguin', 'monkey'];
-  const $displayWord =$('.word');
+  const $displayWord =$('#word');
   const $guessButton = $('#guess');
   const $inputText =$('textarea');
   const $incorrectGuess=$('.incorrect');
@@ -12,7 +12,7 @@ $(() => {
   const $winLoseMsg = $('.word');
   const $picture = $('img');
   const $timedMode= $('#timed');
-  const $showtimer = $('.timer');
+  const $showtimer = $('#timer');
   let userLetter= '';
   let correctCharsSpace =[];
   const images = [
@@ -42,24 +42,25 @@ $(() => {
   console.log(currentWord);
 
 //create underscores for display
-  const underScores = currentWord.replace(/[a-z]/g, ' _');
+  let underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
+  console.log(underScores);
   const underScoresNoWhite = underScores.replace(/\s/g, '');
-  // console.log(underScoresNoWhite.length);
-  // (function typeWriter() {
+  console.log(underScoresNoWhite.length);
+
+  // function typeWriter() {
   //   const timeOut = setTimeout(function() {
   //     underScores++;
-  //     var type = underScores.substring(0, underScores);
+  //     var type = underScores.split('').substring(0, underScores);
   //     $displayWord.text(type);
-  //     typeWriter();
-  //
   //     if (underScores === length) {
   //       clearTimeout(timeOut);
   //     }
   //
   //   }, 110);
-
-  // }());
+  //
+  // }
+  // typeWriter();
 
 //click guess button, capture user input, check for duplicates
 
@@ -111,16 +112,16 @@ $(() => {
   let timerId = null;
 
   function countDown() {
-  // stop the timer if it is running
     if(timerIsRunning) {
       clearInterval(timerId);
       timerIsRunning = false;
     } else {
-    // start the timer if it is NOT running
       timerId = setInterval(() => {
         timeRemaining--;
         $showtimer.text(timeRemaining);
-
+        if(timeRemaining === 10){
+          $showtimer.css('color', 'rgb(128, 0, 42,)');
+        }
         if(timeRemaining === 0) {
           clearInterval(timerId);
         }
