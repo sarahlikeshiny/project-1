@@ -36,12 +36,12 @@ $(() => {
   const currentWord = words[Math.floor(Math.random() * words.length)];
   console.log(currentWord);
 
-//symbolise letters from the word selected and display on the screen -WORKS
+//symbolise letters from the word selected and display on the screen
   const underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
-  console.log(underScores.length);
+  // console.log(underScores.length);
   const underScoresNoWhite = underScores.replace(/\s/g, '');
-  console.log(underScoresNoWhite.length);
+  // console.log(underScoresNoWhite.length);
 
 
 
@@ -55,7 +55,7 @@ $(() => {
     // if (userLetter.length > 1){
     //   // userLetter=null;
     //   // alert('please enter a single letter only');
-    
+
     return userLetter;
 
   });
@@ -65,12 +65,6 @@ $(() => {
   const incorrectChars = [];
 
   $guessButton.on('click', function () {
-
-  // log index number of userLetter in currentWord with each turn,
-  // make correctChars array to store correctChars
-  // loop through correctChars
-
-    // if user letter matches any of the currentword letters, push to index array, then make correctChars equal the userLetter, then clear the input box.
 
     for(var i=0; i<correctChars.length;i++) {
       if (currentWord[i] === userLetter) {
@@ -125,5 +119,46 @@ $(() => {
 
   });
 
+  // timed mode
+  // on button press, activate timer,every 15 secs lose a life, for every correct answer pause clock for 15 secs.
 
+  // TIMER
+  const $timedMode= $('#timed');
+  const $timer = $('.timer');
+  // const $timerScreen = $timer.find('.screen');
+  // const $startStopBtn = $timer.find('#startStop');
+  // const $resetBtn = $timer.find('#reset');
+
+
+  // add event listeners to $startStopBtn & $resetBtn
+
+  let timeRemaining = 30;
+  let timerIsRunning = false;
+  let timerId = null;
+
+
+  function startStopTimer() {
+    // stop the timer if it is running
+    if(timerIsRunning) {
+      clearInterval(timerId);
+      timerIsRunning = false;
+    } else {
+      // start the timer if it is NOT running
+      timerId = setInterval(() => {
+        timeRemaining--;
+        $timer.text(timeRemaining);
+
+        if(timeRemaining === 0) {
+          clearInterval(timerId);
+          $picture.attr('src','images/step seven.png');
+        }
+      }, 1000);
+      timerIsRunning = true;
+    }
+  }
+  $timedMode.on('click', startStopTimer);
 });
+var t1;
+t1 =setTimeout(,1000) //1000 = 1 sec
+
+clearTimeout(t1);
