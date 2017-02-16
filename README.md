@@ -7,7 +7,7 @@ This Hangman game, was built between Feb 10th and Feb 16th 2017.
 
 * This game is built in HTML5, CSS and Javascript with jQuery. 
 * Animation was created using the Animate.css style sheet.
-* The game is deployed via Heroku.
+* The game is deployed via Heroku. (https://frozen-journey-66349.herokuapp.com/)
 * The google web font 'Bungee' was used to style the game.
 
 This is a browser hosted version of the game, for optimnal functionality google Chrome is recommended. 
@@ -37,6 +37,7 @@ This version of hangman has two play modes, the standard mode, which started aut
 <h3>Unsolved Problems </h3> 
 * The game is currently not responsive, therefore not optimised for small screens
 * The code is not namespaced
+* The code has not been translated to es6 or minified.
 
 <h3>Challenges </h3> 
 The most challenging game logic to solve was to match the user guesses with the random word and to display the correct guesses in the appropriate position in the word. I achieved this creating an array of correct characters and looping through this array to find matching letters, and then making this array into a string in order to display it. 
