@@ -6,7 +6,7 @@ $(() => {
 //global constants
   const words = ['cat', 'dog', 'horse', 'penguin', 'monkey'];
   const $displayWord =$('#word');
-  const $guessButton = $('#guess');
+  // const $guessButton = $('#guess');
   const $inputText =$('textarea');
   const $incorrectGuess=$('.incorrect');
   const $reset=$('#reset');
@@ -14,7 +14,6 @@ $(() => {
   const $picture = $('img');
   const $timedMode= $('#timed');
   const $showtimer = $('#timer');
-  let userLetter= '';
   let correctCharsSpace =[];
   const images = [
     'step-zero.png',
@@ -50,22 +49,32 @@ $(() => {
   console.log(underScoresNoWhite.length);
 
 //click guess button, capture user input, check for duplicates
+  let userLetter = '';
 
-  $guessButton.on('click', function() {
-    console.log('Clicked');
-    userLetter = $inputText.val();
-    console.log(userLetter);
+  $inputText.on('keyup', function (e){
+    if (e.keyCode === 13) {
+      userLetter = $inputText.val();
+    }
     return userLetter;
   });
-//check for correct answer, display string with correct letters.
+
+  $inputText.on('keyup', function (e) {
+    if (e.keyCode === 13) {
+      console.log(userLetter);
+      checkMatch();
+      winLose();
+    }
+  });
+
   const indices = [];
   const correctChars = underScoresNoWhite.split('');
   const incorrectChars = [];
 
-  $guessButton.on('click', function () {
+  function checkMatch (){
     for(var i=0; i<correctChars.length;i++) {
       if (currentWord[i] === userLetter) {
         indices.push(i);
+        console.log(correctChars);
         correctChars[i] = userLetter;
         $inputText.val('');
       //remake string with spaces
@@ -78,22 +87,24 @@ $(() => {
       $incorrectGuess.text(incorrectChars);
       $inputText.val('');
     }
+  }
 
+  function winLose () {
     if (indices.length === currentWord.length) {
       console.log('win');
       $winLoseMsg.text('You Win!');
       $inputText.disabled=true;
       console.log($inputText.disabled);
+    } else {
+      const image = `images/${images[incorrectChars.length]}`;
+      $picture.attr('src', image);
+      if(incorrectChars.length === 7) {
+        $winLoseMsg.text('Sorry You Lose');
+        $inputText.disabled =true;
+        console.log(image);
+      }
     }
-
-    const image = `images/${images[incorrectChars.length]}`;
-    $picture.attr('src', image);
-    if(incorrectChars.length === 7) {
-      $winLoseMsg.text('Sorry You Lose');
-      $inputText.disabled =true;
-      console.log(image);
-    }
-  });
+  }
 
 // ------------------TIMER----------------------------
 
