@@ -5,7 +5,7 @@ $(() => {
 
 //---------------global constants--------------------------
   const words = ['cat', 'dog', 'horse', 'penguin', 'monkey'];
-  const $displayWord =$('#word');
+  let $displayWord =$('#word');
   const $inputText =$('textarea');
   const $incorrectGuess=$('.incorrect');
   const $reset=$('#reset');
@@ -14,6 +14,7 @@ $(() => {
   const $timedMode= $('#timed');
   const $showtimer = $('#timer');
   const $error =$('.error');
+  const $sound =$('audio');
   let correctCharsSpace =[];
   const images = [
     'step-zero.png',
@@ -42,7 +43,7 @@ $(() => {
   const underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
   const underScoresNoWhite = underScores.replace(/\s/g, '');
-  console.log(underScoresNoWhite.length);
+
 
 //--------------listen to text area for return keypress and grab letter-------
   let userLetter = '';
@@ -56,7 +57,6 @@ $(() => {
 //-----------listen for return keypress and run game functions----------
   $inputText.on('keyup', function (e) {
     if (e.keyCode === 13) {
-      console.log(userLetter);
       checkRepeat();
       checkMatch();
       winLose();
@@ -72,7 +72,6 @@ $(() => {
     for(var i=0; i<correctChars.length;i++) {
       if (currentWord[i] === userLetter) {
         indices.push(i);
-        console.log(correctChars);
         correctChars[i] = userLetter;
         $inputText.val('');
         correctCharsSpace = correctChars.join(' ');
@@ -106,6 +105,9 @@ $(() => {
   function checkRepeat() {
     if ((correctChars.length > 1 || incorrectChars.length >1) && correctChars.includes(userLetter) || incorrectChars.includes(userLetter)){
       $error.text('that letter has already been guessed');
+      setTimeout(function() {
+        $error.fadeOut().empty();
+      }, 2000);
     }
   }
 
@@ -125,9 +127,11 @@ $(() => {
         $showtimer.text(timeRemaining);
         if(timeRemaining === 10){
           $showtimer.css('color', 'red');
+          $sound.play();
         }
-        if(timeRemaining === 0) {
+        if((timeRemaining === 0)|| (indices.length === currentWord.length)){
           clearInterval(timerId);
+          $sound.pause();
         }
       }, 1000);
       timerIsRunning = true;
@@ -145,6 +149,11 @@ $(() => {
         clearInterval(timerId);
         $winLoseMsg.text('Game over!');
         $inputText.disabled =true;
+      }
+      if (indices.length === currentWord.length) {
+        clearInterval(timerId);
+        $winLoseMsg.text('You Win');
+        i = 0;
       }
       i++;
     }, 5000);

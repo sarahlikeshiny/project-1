@@ -42,22 +42,22 @@ h1 {
 
 }
 #reset {
-  /*display: inline;
-  margin-left: 60px;*/
+  display: inline;
+  margin-left: 40px;
   float:right;
   margin:5px;
 
 
 }
 #timed {
-  /*display: inline;
-  margin-left: 60px;*/
+  display: inline;
+  margin-left: 40px;
   float:right;
   margin:5px;
 
 
 }
-/*/------------------*picture -right hand side---------------*/
+/------------------*picture -right hand side---------------
 div {
   /*float:right;*/
   /*margin-left: 45%;
@@ -89,6 +89,12 @@ h2 {
   /*border: 2px solid grey;*/
 }
 
+.error {
+  text-align: center;
+  font-size:30px;
+  font-family: 'Bungee', cursive;
+  color: rgba(128, 0, 42,0.5);
+}
 
 .incorrect {
   margin-top:35%;
@@ -99,6 +105,7 @@ h2 {
   margin-top:3%;
   margin-left:100px;
   width:200px;
+  font-size:35px;
   /*border: 2px solid grey;*/
 }
 

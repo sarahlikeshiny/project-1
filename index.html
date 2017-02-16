@@ -6,7 +6,9 @@
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.css">
+    <link
+     href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -15,6 +17,8 @@
   </head>
 
 <body>
+  <audio src="sounds/24-clock effect.mp3" type ="audio/mp3" autoplay="">
+  </audio>
   <div id="wrap">
   <header>
     <h1>Hangman</h1>
@@ -25,13 +29,11 @@
   <main>
     <div class = "left">
       <form class="gameboard" action="index.html" method="post">
-        <!-- <h2 id ="userText" contenteditable="true"></h2> -->
         <textarea name="userInput" rows="1" cols="5" maxlength="1" ></textarea>
-        <!-- <button type="button" name="guess" id = "guess">Guess</button> -->
       </form>
         <h2 id="timer"></h2>
         <h2 class="incorrect"></h2>
-        <h2 id="word" class ="typewriter"> the word goes here</h2>
+        <h2 id="word" class ="animated bounceInLeft"> the word goes here</h2>
         <div class ="error">
         </div>
     </div>
