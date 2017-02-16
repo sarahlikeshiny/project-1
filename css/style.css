@@ -89,11 +89,13 @@ h2 {
   /*border: 2px solid grey;*/
 }
 
-.error {
+#error {
   text-align: center;
-  font-size:30px;
+  font-size:60px;
   font-family: 'Bungee', cursive;
   color: rgba(128, 0, 42,0.5);
+  margin:20px;
+  width:400px;
 }
 
 .incorrect {

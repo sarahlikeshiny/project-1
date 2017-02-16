@@ -5,15 +5,14 @@ $(() => {
 
 //---------------global constants--------------------------
   const words = ['cat', 'dog', 'horse', 'penguin', 'monkey'];
-  let $displayWord =$('#word');
+  const $displayWord =$('#word');
   const $inputText =$('textarea');
   const $incorrectGuess=$('.incorrect');
   const $reset=$('#reset');
-  const $winLoseMsg = $('#word');
   const $picture = $('img');
   const $timedMode= $('#timed');
   const $showtimer = $('#timer');
-  const $error =$('.error');
+  const $error =$('#error');
   const $sound =$('audio');
   let correctCharsSpace =[];
   const images = [
@@ -89,13 +88,15 @@ $(() => {
 // -----------------win lose condition--------------
   function winLose () {
     if (indices.length === currentWord.length) {
-      $winLoseMsg.text('You Win!');
+      $error.text('You Win!');
+      $error.addClass('animated tada');
       $inputText.disabled = true;
     } else {
       const image = `images/${images[incorrectChars.length]}`;
       $picture.attr('src', image);
       if(incorrectChars.length === 7) {
-        $winLoseMsg.text('Sorry You Lose');
+        $error.text('Sorry You Lose');
+        $error.addClass('animated tada');
         $inputText.disabled = true;
       }
     }
@@ -147,12 +148,13 @@ $(() => {
 
       if(i === 7) {
         clearInterval(timerId);
-        $winLoseMsg.text('Game over!');
+        $error.text('Game over!');
         $inputText.disabled =true;
       }
       if (indices.length === currentWord.length) {
         clearInterval(timerId);
-        $winLoseMsg.text('You Win');
+        $error.text('You Win');
+        $error.addClass('animated tada');
         i = 0;
       }
       i++;
