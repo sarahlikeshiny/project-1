@@ -1,12 +1,11 @@
 console.log('js is connected - woo');
 //to do;
-//refactor, add key listeners rather than clicks., don;t allow any more entries after game over - disable not working?.
+ // don;t allow any more entries after game over - disable not working?.
 $(() => {
 
-//global constants
+//---------------global constants--------------------------
   const words = ['cat', 'dog', 'horse', 'penguin', 'monkey'];
   const $displayWord =$('#word');
-  // const $guessButton = $('#guess');
   const $inputText =$('textarea');
   const $incorrectGuess=$('.incorrect');
   const $reset=$('#reset');
@@ -14,6 +13,7 @@ $(() => {
   const $picture = $('img');
   const $timedMode= $('#timed');
   const $showtimer = $('#timer');
+  const $error =$('.error');
   let correctCharsSpace =[];
   const images = [
     'step-zero.png',
@@ -27,28 +27,24 @@ $(() => {
   ];
 
 
-
-
 // ------------New Game----------------------------
   $reset.on('click', function () {
     location.reload(true);
   });
-//listen for click to activate timed mode.
+//-------------listen for click to activate timed mode.-----------------
   $timedMode.on('click', startStopTimer);
   $timedMode.on('click', countDown);
 
-//select word at random
+//---------------select word from array at random-------------------------
   const currentWord = words[Math.floor(Math.random() * words.length)];
-  console.log(currentWord);
 
-//create underscores for display
+//-------------------create underscores for display------------------------
   const underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
-  console.log(underScores);
   const underScoresNoWhite = underScores.replace(/\s/g, '');
   console.log(underScoresNoWhite.length);
 
-//click guess button, capture user input, check for duplicates
+//--------------listen to text area for return keypress and grab letter-------
   let userLetter = '';
 
   $inputText.on('keyup', function (e){
@@ -57,10 +53,11 @@ $(() => {
     }
     return userLetter;
   });
-
+//-----------listen for return keypress and run game functions----------
   $inputText.on('keyup', function (e) {
     if (e.keyCode === 13) {
       console.log(userLetter);
+      checkRepeat();
       checkMatch();
       winLose();
     }
@@ -70,6 +67,7 @@ $(() => {
   const correctChars = underScoresNoWhite.split('');
   const incorrectChars = [];
 
+  // -------------Check is word contains guessed letter----------------
   function checkMatch (){
     for(var i=0; i<correctChars.length;i++) {
       if (currentWord[i] === userLetter) {
@@ -77,7 +75,6 @@ $(() => {
         console.log(correctChars);
         correctChars[i] = userLetter;
         $inputText.val('');
-      //remake string with spaces
         correctCharsSpace = correctChars.join(' ');
         $displayWord.text(correctCharsSpace);
       }
@@ -89,24 +86,30 @@ $(() => {
     }
   }
 
+
+// -----------------win lose condition--------------
   function winLose () {
     if (indices.length === currentWord.length) {
-      console.log('win');
       $winLoseMsg.text('You Win!');
-      $inputText.disabled=true;
-      console.log($inputText.disabled);
+      $inputText.disabled = true;
     } else {
       const image = `images/${images[incorrectChars.length]}`;
       $picture.attr('src', image);
       if(incorrectChars.length === 7) {
         $winLoseMsg.text('Sorry You Lose');
-        $inputText.disabled =true;
-        console.log(image);
+        $inputText.disabled = true;
       }
     }
   }
 
-// ------------------TIMER----------------------------
+  //------------check for repeated letters
+  function checkRepeat() {
+    if ((correctChars.length > 1 || incorrectChars.length >1) && correctChars.includes(userLetter) || incorrectChars.includes(userLetter)){
+      $error.text('that letter has already been guessed');
+    }
+  }
+
+// ------------------Timer----------------------------
 
   let timeRemaining = 35;
   let timerIsRunning = false;
@@ -131,7 +134,7 @@ $(() => {
     }
   }
 
-  // // // ------------SPEED MODE FUNCTION------------
+  // ------------Speed mode function------------
   function startStopTimer (){
     console.log('startStopTimer');
     let i = 1;
