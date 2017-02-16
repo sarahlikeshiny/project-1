@@ -41,12 +41,24 @@ h1 {
   margin:5px;
 
 }
+button {
+  padding:10px;
+  background-color: rgba(0, 61, 102, 0.5);
+  border: 1px solid white;
+  color:white;
+  text-decoration:none;
+  font-family: 'Bungee', cursive;
+  font-size: 20px;
+  font-weight: bold;
+}
+button:hover {
+  background-color: rgb(128, 0, 42);
+}
 #reset {
   display: inline;
   margin-left: 40px;
   float:right;
   margin:5px;
-
 
 }
 #timed {
@@ -91,7 +103,7 @@ h2 {
 
 #error {
   text-align: center;
-  font-size:60px;
+  font-size:30px;
   font-family: 'Bungee', cursive;
   color: rgba(128, 0, 42,0.5);
   margin:20px;
@@ -166,7 +178,7 @@ footer {
   background-color: rgba(0, 61, 102, 0.4);
   padding: 5px;
   font-size: 15px;
-  font-family: 'Bungee Shade', cursive;
+  font-family: 'Bungee', cursive;
   color: #fff;
   text-align :center;
 
@@ -186,14 +198,29 @@ footer .logo {
 }
 /*change the margins*/
 @media only screen and (max-width: 640px) {
+  #wrap{
+    height: 100%;
+    width: 100%;
+  }
+  main{
+    overflow:auto;
+    height:100%;
+  }
+
    img {
      display:none;
    }
-   button {
-    float:none;
-
+   h1{
+     font-size:20px;
+     width:100%
 
    }
-   h2, form, textarea{
-
+   button {
+    float:none;
+    display:block;
+    font-size: 20px;
+   }
+   h2 {
+     width:100%
+     font-size:20px;
    }
