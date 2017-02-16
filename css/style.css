@@ -96,6 +96,8 @@ h2 {
   color: rgba(128, 0, 42,0.5);
   margin:20px;
   width:400px;
+  /*border:2px solid grey;*/
+  margin-left:300px;
 }
 
 .incorrect {

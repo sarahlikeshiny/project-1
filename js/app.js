@@ -90,14 +90,14 @@ $(() => {
     if (indices.length === currentWord.length) {
       $error.text('You Win!');
       $error.addClass('animated tada');
-      $inputText.disabled = true;
+      $inputText.attr('disabled', true);
     } else {
       const image = `images/${images[incorrectChars.length]}`;
       $picture.attr('src', image);
       if(incorrectChars.length === 7) {
         $error.text('Sorry You Lose');
         $error.addClass('animated tada');
-        $inputText.disabled = true;
+        $inputText.attr('disabled', true);
       }
     }
   }
@@ -128,11 +128,10 @@ $(() => {
         $showtimer.text(timeRemaining);
         if(timeRemaining === 10){
           $showtimer.css('color', 'red');
-          $sound.play();
+          $sound.get(0).play();
         }
         if((timeRemaining === 0)|| (indices.length === currentWord.length)){
           clearInterval(timerId);
-          $sound.pause();
         }
       }, 1000);
       timerIsRunning = true;
@@ -149,12 +148,13 @@ $(() => {
       if(i === 7) {
         clearInterval(timerId);
         $error.text('Game over!');
-        $inputText.disabled =true;
+        $inputText.attr('disabled', true);
       }
       if (indices.length === currentWord.length) {
         clearInterval(timerId);
         $error.text('You Win');
         $error.addClass('animated tada');
+        $inputText.attr('disabled', true);
         i = 0;
       }
       i++;
