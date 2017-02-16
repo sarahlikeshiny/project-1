@@ -3,6 +3,7 @@
 }
 html, body {
   height:100%;
+  width:100%;
 }
 #wrap {
   min-height: 100%;
@@ -78,7 +79,7 @@ img {
 h2 {
   position:absolute;
   margin-left: 20px;
-  margin-top:13%;
+  margin-top:15%;
   width:400px;
   height: 75px;
   font-family: 'Bungee', cursive;
@@ -95,8 +96,8 @@ h2 {
   margin-top: 20%;
   letter-spacing: .15em; /* Adjust as needed */
   animation:
-    typing 3.5s steps(40, end),
-    blink-caret .75s step-end infinite;
+    typing 1.5s steps(40, end),
+    blink-caret .55s step-end infinite;
 }
 
 /* The typing effect */
@@ -104,11 +105,7 @@ h2 {
   from { width: 0 }
   to { width: 100% }
 }
-/* The typewriter cursor effect */
-/*@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange; }
-}*/
+
 .incorrect {
   margin-top:35%;
   width:400px;
@@ -120,14 +117,10 @@ h2 {
   width:200px;
   /*border: 2px solid grey;*/
 }
-/*#timer.changecolor {
-  color:rgb(128, 0, 42);
-  /*animation: shake 0.5s infinite;*/
-
 
 form {
   position:absolute;
-  margin-top: 20%;
+  margin-top: 25%;
   width:400px;
   height:75px;
   padding:20px
@@ -195,13 +188,16 @@ footer .logo {
   height: 20px;
   width:20px;
 }
-
+/*change the margins*/
 @media only screen and (max-width: 640px) {
-   img, .left{
-     display:block;
-     float:none;
-     width:100%;
+   img {
+     display:none;
+   }
+   button {
+    float:none;
+
 
    }
+   h2, form, textarea{
 
-  }
+   }

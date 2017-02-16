@@ -1,5 +1,6 @@
 console.log('js is connected - woo');
-
+//to do;
+//refactor, add key listeners rather than clicks., don;t allow any more entries after game over - disable not working?.
 $(() => {
 
 //global constants
@@ -9,7 +10,7 @@ $(() => {
   const $inputText =$('textarea');
   const $incorrectGuess=$('.incorrect');
   const $reset=$('#reset');
-  const $winLoseMsg = $('.word');
+  const $winLoseMsg = $('#word');
   const $picture = $('img');
   const $timedMode= $('#timed');
   const $showtimer = $('#timer');
@@ -42,25 +43,11 @@ $(() => {
   console.log(currentWord);
 
 //create underscores for display
-  let underScores = currentWord.replace(/[a-z]/g, ' _');
+  const underScores = currentWord.replace(/[a-z]/g, ' _');
   $displayWord.text(underScores);
   console.log(underScores);
   const underScoresNoWhite = underScores.replace(/\s/g, '');
   console.log(underScoresNoWhite.length);
-
-  // function typeWriter() {
-  //   const timeOut = setTimeout(function() {
-  //     underScores++;
-  //     var type = underScores.split('').substring(0, underScores);
-  //     $displayWord.text(type);
-  //     if (underScores === length) {
-  //       clearTimeout(timeOut);
-  //     }
-  //
-  //   }, 110);
-  //
-  // }
-  // typeWriter();
 
 //click guess button, capture user input, check for duplicates
 
@@ -95,12 +82,15 @@ $(() => {
     if (indices.length === currentWord.length) {
       console.log('win');
       $winLoseMsg.text('You Win!');
+      $inputText.disabled=true;
+      console.log($inputText.disabled);
     }
 
     const image = `images/${images[incorrectChars.length]}`;
     $picture.attr('src', image);
     if(incorrectChars.length === 7) {
       $winLoseMsg.text('Sorry You Lose');
+      $inputText.disabled =true;
       console.log(image);
     }
   });
@@ -120,7 +110,7 @@ $(() => {
         timeRemaining--;
         $showtimer.text(timeRemaining);
         if(timeRemaining === 10){
-          $showtimer.css('color', 'rgb(128, 0, 42,)');
+          $showtimer.css('color', 'red');
         }
         if(timeRemaining === 0) {
           clearInterval(timerId);
@@ -140,13 +130,10 @@ $(() => {
       if(i === 7) {
         clearInterval(timerId);
         $winLoseMsg.text('Game over!');
+        $inputText.disabled =true;
       }
       i++;
     }, 5000);
   }
 
 });
-
-//once hangman is hanged dont allow any more letters to be input
-//once a letter is used dont allow this to be input against
-//
