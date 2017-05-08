@@ -1,10 +1,9 @@
 # Project-1
 
-<h1> Hangman V2</h1>
+<h1> Hangman</h1>
 <h2> GA WDI London, Project 1, Feb 2017.</h2>
 
-This Hangman game, was originally built between Feb 10th and Feb 16th 2017.
-This V2 is an update to the game, where a two player mode has been added to the game logic.
+
 
 * This game is built in HTML5, CSS and Javascript with jQuery.
 * Animation was created using the Animate.css style sheet.
