@@ -1,6 +1,6 @@
 # Project-1
 
-<h1> Hangman</h1>
+<h1> Hangman V2</h1>
 <h2> GA WDI London, Project 1, Feb 2017.</h2>
 
 
