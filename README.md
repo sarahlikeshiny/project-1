@@ -1,16 +1,17 @@
 # Project-1
 
-<h1> Hangman </h1>
+<h1> Hangman V2</h1>
 <h2> GA WDI London, Project 1, Feb 2017.</h2>
 
-This Hangman game, was built between Feb 10th and Feb 16th 2017.
+This Hangman game, was originally built between Feb 10th and Feb 16th 2017.
+This V2 is an update to the game, where a two player mode has been added to the game logic.
 
-* This game is built in HTML5, CSS and Javascript with jQuery. 
+* This game is built in HTML5, CSS and Javascript with jQuery.
 * Animation was created using the Animate.css style sheet.
 * The game is deployed via Heroku. (https://frozen-journey-66349.herokuapp.com/)
 * The google web font 'Bungee' was used to style the game.
 
-This is a browser hosted version of the game, for optimnal functionality Google Chrome is recommended. 
+This is a browser hosted version of the game, for optimnal functionality Google Chrome is recommended.
 
 <h3> Instructions for Play</h3>
 This version of hangman has two play modes, the standard mode, which started automatically when the page loads, and speed mode which is started by clicking the speed mode button. Clicking the New Game button will reset the gane board, clicking the speed mode button will start the timer.
@@ -31,20 +32,17 @@ This version of hangman has two play modes, the standard mode, which started aut
 
 1. Clicking the new game button and then the speed mode button starts speed mode.
 2. You have 35 seconds to guess the word or the man will hang!
-3. Another part of the man will be drawn every 5 seconds 
+3. Another part of the man will be drawn every 5 seconds
 4. The game ends when the man is fully drawn or the word is guessed.
 
- 
 
-<h3>Unsolved Problems </h3> 
+
+<h3>Unsolved Problems </h3>
 * The game is currently not responsive, and will not display properly on small screens
 * The code is not namespaced
 * The code has not been translated to ES5 or minified.
 
-<h3>Challenges </h3> 
-The most challenging game logic to solve was to match the user guesses with the random word and to display the correct guesses in the appropriate position in the word. I achieved this creating an array of correct characters and looping through this array to swap the underscores in the appropriate positions for the letters, and then making this array into a string in order to display it. 
+<h3>Challenges </h3>
+The most challenging game logic to solve was to match the user guesses with the random word and to display the correct guesses in the appropriate position in the word. I achieved this creating an array of correct characters and looping through this array to swap the underscores in the appropriate positions for the letters, and then making this array into a string in order to display it.
 
-Styling the game was also challenging, espcially positioning the footer at the base of the page given the relatively empty page. I achieved this by creating an empty wrapper div to fill the space. 
-
-
-
+Styling the game was also challenging, espcially positioning the footer at the base of the page given the relatively empty page. I achieved this by creating an empty wrapper div to fill the space.
