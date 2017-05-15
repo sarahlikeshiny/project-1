@@ -1,6 +1,5 @@
 console.log('js is connected - woo');
-//to do;
- // don;t allow any more entries after game over - disable not working?.
+
 $(() => {
 
 //---------------global constants--------------------------
@@ -62,11 +61,12 @@ $(() => {
     }
   });
 
+  // -------------Check if word contains guessed letter----------------
   const indices = [];
   const correctChars = underScoresNoWhite.split('');
   const incorrectChars = [];
 
-  // -------------Check is word contains guessed letter----------------
+
   function checkMatch (){
     for(var i=0; i<correctChars.length;i++) {
       if (currentWord[i] === userLetter) {
@@ -144,7 +144,6 @@ $(() => {
     let i = 1;
     const timerId = setInterval(() => {
       $picture.attr('src', `images/${images[i]}`);
-
       if(i === 7) {
         clearInterval(timerId);
         $error.text('Game over!');
